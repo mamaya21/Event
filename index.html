@@ -25,7 +25,7 @@
 
 </head>
 
-<body>
+<body id="bodyevent">
   <!-- ======= Portfolio Section ======= -->
   <section id="portfolio" class="portfolio section-show">
     <div class="container">
@@ -33,11 +33,11 @@
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active"><img src="assets/img/gameIcon/softnyx.png"></li>
-            <li data-filter=".filter-wft"><img src="assets/img/gameIcon/logo_wolfteam.gif"></li> 
-            <li data-filter=".filter-op7"><img src="assets/img/gameIcon/logo_operation7.gif"></li>
-            <li data-filter=".filter-rkn"><img src="assets/img/gameIcon/logo_rakion.gif"></li>
-            <li data-filter=".filter-gbt"><img src="assets/img/gameIcon/logo_gunboundt.png"></li>
+            <li data-filter="*" class="filter-active" onclick="clicGame('0')"><img src="assets/img/gameIcon/softnyx.png"></li>
+            <li data-filter=".filter-wft" onclick="clicGame('1')"><img src="assets/img/gameIcon/logo_wolfteam.gif"></li> 
+            <li data-filter=".filter-op7" onclick="clicGame('2')"><img src="assets/img/gameIcon/logo_operation7.gif"></li>
+            <li data-filter=".filter-rkn" onclick="clicGame('3')"><img src="assets/img/gameIcon/logo_rakion.gif"></li>
+            <li data-filter=".filter-gbt" onclick="clicGame('4')"><img src="assets/img/gameIcon/logo_gunboundt.png"></li>
           </ul>
         </div>
       </div>
@@ -93,6 +93,31 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function clicGame(value){
+      let backimg = '../img/imgpsh_fullsize_anim.png';
+      if(value == '0') backimg = '../img/imgpsh_fullsize_anim.png';
+      else if(value == '1') backimg = '../img/bg_wolfteam.jpg';
+      else if(value == '2') backimg = '../img/op7.png';
+      else if(value == '3') backimg = '../img/rakion.png';
+      else if(value == '4') backimg = '../img/gbt.png';
+
+      let elemento = document.getElementById('bodyevent');
+      let estilo = window.getComputedStyle(elemento, '::before');
+      let background = estilo.getPropertyValue('background');
+
+      let position = 0;
+      for (let i = 0; i < document.styleSheets.length; i++) {
+          if((document.styleSheets[i].href).includes("style_event_v1.css")){
+            position = i;
+          }
+      }
+
+      document.styleSheets[position].addRule("body::before", "background: #040404 url('"+backimg+"') top right no-repeat;");
+
+    }
+  </script>
 
 </body>
 
